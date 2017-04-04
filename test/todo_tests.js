@@ -88,4 +88,7 @@ assert.strictEqual(todos.destroyAll(), true, 'Check the destroy all function!')
 assert.strictEqual(todos.list().length, 0, 'Check the destroy all function!')
 success("Passed destroy all function!")
 
+assert.strictEqual(todos.save(), true, 'Check save function!')
+success("Passed save function!")
+
 success('Assignment complete. Congratulations!!\r\n\r\n Another TDD finished!');
