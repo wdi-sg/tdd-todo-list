@@ -2,8 +2,6 @@ const assert = require('assert')
 const todos = require('../controllers/todos_controller.js')
 
 // // Use Assert to Test the functionality of all your CRUD methods e.g.
-
-
 // testing the todos.create(params) method
 console.log('Testing --CREATE--create--')
 console.log('Creating Bobby...')
@@ -75,3 +73,4 @@ assert.strictEqual(todos.list().length, 0, 'Todos should be empty')
 console.log(todos.list())
 console.log('Haha! All destroyed!')
 console.log('Success!\n')
+todos.save()
