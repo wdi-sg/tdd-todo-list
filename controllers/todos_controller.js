@@ -45,9 +45,12 @@ function show (id) {
 // UPDATE - params should be an object with KVPs for the fields to update
 function update (id, params) {
   var object = show(id)
-  if (params.name.length >= 5 && params.name !== '') {
+  if (show(id) === null) {
+    return false
+  }
+  else if (params.name.length >= 5 && params.name !== '') {
     for (key in params) {
-      params[key] = object[key]
+      object[key] = params[key]
     }
     return true
   }
@@ -58,6 +61,24 @@ function update (id, params) {
 
 // DESTROY (destroy & destroyAll)
 function destroy (id) {
+  if (show(id) === null) {
+    return false
+  }
+  else {
+    todos.forEach(function (object, i) {
+      if (object._id === id) {
+        todos.splice(i, 1)
+      }
+    })
+    return true
+  }
+}
+
+function destroyAll () {
+  todos.forEach(function (object, i) {
+    todos.shift()
+  })
+  return true
 }
 
 module.exports = {
@@ -65,5 +86,6 @@ module.exports = {
   list,
   show,
   update,
-  destroy
+  destroy,
+  destroyAll
 }
