@@ -117,7 +117,7 @@ console.log(beforeDestroy)
 assert.strictEqual(todos.destroy(id), true, 'should return true if destroy is successful')
 assert.strictEqual(todos.list().length, 1, 'should return length = 1 after destroy is successful')
 
-assert.strictEqual(todos.destroy('lkajsdkljaklds323123'), false, 'should return false if destroy is unsuccessful')
+assert.strictEqual(todos.destroy(id), false, 'should return false if destroy is unsuccessful')
 
 console.log('---------- Test Passed ----------\n')
 
