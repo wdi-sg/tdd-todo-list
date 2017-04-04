@@ -34,6 +34,7 @@ function create (params) {
 
 // READ (list & show)
 function list () {
+  console.log(list);
   return todos
 }
 function show (id) {
@@ -51,23 +52,28 @@ function show (id) {
 // UPDATE - params should be an object with KVPs for the fields to update
 function update (id, params) {
   var array = list()
+  var nameUpdate = 0
   var updated = 0
   for (var i = 0; i < array.length; i++) {
     if (array[i]._id = id) {
-      if (params.name > 5) {
+      if (params.name.length > 5) {
         array[i].name = params.name
-        updated = 1
+        nameUpdate = 1
       }
-      array[i].description = params.description
-      array[i].completed = params.completed
-
-    } else {
+        array[i].description = params.description
+        array[i].completed = params.completed
+        if(nameUpdate === 1){
+          updated = 1
+        }
+      }
+     else {
       updated = 0
     }
   }
   if (updated === 1) {
     return true
-  } else {
+  }
+  else {
     return false
   }
 }
@@ -77,24 +83,27 @@ function destroy (id) {
   var array = list()
   for (var i = 0; i < array.length; i++) {
     if (array[i]._id = id) {
+      console.log(array);
+
       array.splice(i, 1)
+      console.log(array);
       return true
-    } else {
+    }
+    else
+    {
       return false
     }
   }
 }
 
-function destroyAll(){
+function destroyAll () {
   todos = []
-  if(todos.length == 0){
+  if (todos.length == 0) {
     return true
-  }
-  else {
+  } else {
     return false
   }
 }
-
 
 module.exports = {
   create,
