@@ -69,6 +69,7 @@ var tempID3 = todos.list()[6]._id
 assert.strictEqual(todos.destroy(tempID3), true, 'True if destroyed')
 assert.strictEqual(todos.destroy(tempID3), false, 'Rumpelt cannot live!')
 console.log('Rumpelt has angered me. No one can live...')
+console.log('Testing --DESTROY--destroyAll--')
 todos.destroyAll()
 assert.strictEqual(todos.list().length, 0, 'Todos should be empty')
 console.log(todos.list())
