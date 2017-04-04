@@ -82,4 +82,5 @@ assert.strictEqual(todos.destroy(id), true, 'Does not return true if delete is s
 assert.strictEqual(todos.destroy(id), false, 'Does not return false if delete is unsuccessful')
 
 // test if destroyAll deletes all Todos and returns true
-assert.ok(destroyAll(), 'Does not return true upon deleting all Todos')
+assert.strictEqual(todos.list().length, 0, 'List should return an array of all todos')
+assert.ok(todos.destroyAll(), 'Does not return true upon deleting all Todos')
