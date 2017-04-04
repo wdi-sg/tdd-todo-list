@@ -32,23 +32,27 @@ var updatedParams = {
   description: 'stupid tester',
   completed: false
 }
+var todosEntries = todos.list().length
+console.log(todos.list())
+
+success('Starting TDD...')
 
 todos.create(testParams1)
-assert.strictEqual(todos.list().length, 1, 'Failed Basic Test')
+assert.strictEqual(todos.list().length, todosEntries+1, 'Failed Basic Test')
 success("Passed first basic test!")
 assert.strictEqual(todos.list()[0]._id !== null, true, 'Failed Second Test')
 success("Passed second basic test!")
 
 todos.create(testParams2)
-assert.strictEqual(todos.list().length, 1, 'Check for condition of names less than 5 chars')
+assert.strictEqual(todos.list().length, todosEntries+1, 'Check for condition of names less than 5 chars')
 success("Passed test below 5 characters!")
 
 todos.create(testParams3)
-assert.strictEqual(todos.list().length, 1, 'Check for condition of names is nothing')
+assert.strictEqual(todos.list().length, todosEntries+1, 'Check for condition of names is nothing')
 success("Passed test name is nothing!")
 
 todos.create(testParams4)
-assert.strictEqual(todos.list().length, 2, 'Check for only name condition')
+assert.strictEqual(todos.list().length, todosEntries+2, 'Check for only name condition')
 success("Passed test only name is given!")
 
 assert.strictEqual(todos.list().length > 0, true, 'Check if list returns an array of todos')
@@ -84,11 +88,16 @@ success("Passed destroy function!")
 assert.strictEqual(todos.destroy(id), false, 'Check the destroy function!')
 success("Passed a repeat destroy function to test if really destroyed!")
 
+assert.strictEqual(todos.save(), true, 'Check save function!')
+success("Passed save function!")
+
 assert.strictEqual(todos.destroyAll(), true, 'Check the destroy all function!')
+
+console.log(todos.list().length)
+console.log(todos.list())
+
 assert.strictEqual(todos.list().length, 0, 'Check the destroy all function!')
 success("Passed destroy all function!")
 
-assert.strictEqual(todos.save(), true, 'Check save function!')
-success("Passed save function!")
 
 success('Assignment complete. Congratulations!!\r\n\r\n Another TDD finished!');

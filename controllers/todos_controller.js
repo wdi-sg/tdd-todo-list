@@ -3,7 +3,7 @@ const fs = require('fs')
 
 // const todos = []
 // the following line will instead load the todos from a json file when the app starts
-const todos = require('../data.json')
+var todos = require('../data.json')
 
 // The following function can be used to save the todos array to the json data file
 function save () {
@@ -18,6 +18,13 @@ function create(params) {
   var newTodo = params
 
   newTodo._id = uuidGenerator()
+
+  todos.forEach(function(value) {
+    if (value._id === newTodo._id) {
+      return console.log('id already exists!')
+    }
+  })
+
   console.log(params._id + " was created")
   if (!newTodo.description) newTodo.description === "default"
   if (!newTodo.completed) newTodo.completed === "false"
