@@ -15,6 +15,7 @@ var testParams = {
   completed: true
 }
 todos.create(testParams)
+todos.save()
 assert.strictEqual(todos.list().length, 1, 'create should push an object into the todos list')
 assert.strictEqual(todos.list()[0].description, 'test description', 'KVPs should be reflected')
 assert.strictEqual(todos.list()[0].completed, true, 'KVPs should be reflected')
@@ -31,6 +32,7 @@ var test2Params = {
   name: 'testing2'
 }
 todos.create(test2Params)
+todos.save()
 assert.strictEqual(todos.list()[1].description, 'my description', 'Create should be able to create a new Todo with just name')
 assert.strictEqual(todos.list()[1].completed, false, 'Create should be able to create a new Todo with just name')
 console.log('TEST PASSED')

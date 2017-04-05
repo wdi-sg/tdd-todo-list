@@ -1,26 +1,26 @@
 const uuidGenerator = require('uuid/v4')
 const fs = require('fs')
 
-const todos = []
+// const todos = [{"_id":"7ea03ab6-eb63-4ff9-a38e-be68490247fc","name":"Bring fruits to grandma","description":"Bring fruits to grandma","completed":false}]
 //// the following line will instead load the todos from a json file when the app starts
-// const todos = require('../data.json')
+const todos = require('../data.json')
 
 //// The following function can be used to save the todos array to the json data file
-// function save () {
-//   const json = JSON.stringify(todos)
-//   fs.writeFileSync('data.json', json, 'utf8')
-// }
+function save () {
+  const json = JSON.stringify(todos)
+  fs.writeFileSync('data.json', json, 'utf8')
+}
 
 // CREATE - params should be an object with keys for name, description and completed
 function create (params) {
   var newTodo = params
+  newTodo._id = uuidGenerator()
   if (!newTodo.description || newTodo.description == '') {
     newTodo.description = 'my description'
   }
   if (!newTodo.completed || newTodo.completed == '') {
     newTodo.completed = false
   }
-  newTodo._id = uuidGenerator()
   if (newTodo.name && newTodo.name.length >= 5) {
     todos.push(newTodo)
   }
@@ -87,5 +87,8 @@ module.exports = {
   show,
   update,
   destroy,
-  destroyAll
+  destroyAll,
+  save
 }
+
+// {"_id":"7ea03ab6-eb63-4ff9-a38e-be68490247fc","name":"Bring fruits to grandma","description":"Bring fruits to grandma","completed":false}
