@@ -18,14 +18,13 @@ function create (params) {
   todos.push(newTodo)
   console.log(newTodo)
 }
-// function checkLength(){
-//     if(name.length >= 5){
-//         console.log("success");
-//     }
-//     else{
-//         console.log("make sure the input is more than 5 characters long")
-//     }
-// }
+function checkLength () {
+  if (name.length >= 5) {
+    console.log('success')
+  } else {
+    console.log('make sure the input is more than 5 characters long')
+  }
+}
 
 // READ (list & show)
 function list () {
