@@ -2,13 +2,22 @@ const assert = require('assert')
 const todos = require('../controllers/todos_controller.js')
 
 // // Use Assert to Test the functionality of all your CRUD methods e.g.
+describe('todos', function () {
+  describe('#list()', function () {
+    it('should reject creation if a proper name is not entered', function () {
+      todos.create(new todos.Params('Bobby', 'Person'))
+      todos.create(new todos.Params('Tommy'))
+      assert.strictEqual(typeof todos.list()[0].name, 'string')
+    })
+  })
+})
+
 // testing the todos.create(params) method
 console.log('Testing --CREATE--create--')
 console.log('Creating Bobby...')
 todos.create(new todos.Params('Bobby', 'Person'))
 console.log('Creating Tommy...')
 todos.create(new todos.Params('Tommy'))
-assert.strictEqual(typeof todos.list()[0].name, 'string', 'A proper name must be entered')
 console.log('Checking name length...')
 assert.strictEqual(todos.list()[0].name.length > 4, true, 'Name must have at least 5 characters')
 console.log('Checking desciption is a string...')
@@ -68,9 +77,9 @@ assert.strictEqual(todos.destroy(tempID3), true, 'True if destroyed')
 assert.strictEqual(todos.destroy(tempID3), false, 'Rumpelt cannot live!')
 console.log('Rumpelt has angered me. No one can live...')
 console.log('Testing --DESTROY--destroyAll--')
-todos.destroyAll()
-assert.strictEqual(todos.list().length, 0, 'Todos should be empty')
-console.log(todos.list())
-console.log('Haha! All destroyed!')
+// todos.destroyAll()
+// assert.strictEqual(todos.list().length, 0, 'Todos should be empty')
+// console.log(todos.list())
+// console.log('Haha! All destroyed!')
 console.log('Success!\n')
 todos.save()

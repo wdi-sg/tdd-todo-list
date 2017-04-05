@@ -1,6 +1,6 @@
 const uuidGenerator = require('uuid/v4')
 const fs = require('fs')
-
+// const todos = []
 // // the following line will instead load the todos from a json file when the app starts
 const todos = require('../data.json')
 
@@ -22,14 +22,11 @@ function create (params) {
     console.log('name too short (4 or fewer characters)')
     return
   }
-  function generateTodo () {
-    var newTodo = params
-    var uuid = uuidGenerator
-    newTodo._id = uuid.call()
-    todos.push(newTodo)
-  }
-
-  generateTodo()
+  var newTodo = params
+  var uuid = uuidGenerator
+  newTodo._id = uuid.call()
+  todos.push(newTodo)
+  save()
 }
 
 // READ (list & show)
@@ -66,6 +63,7 @@ function update (id, params) {
     x.completed = params.completed
     changeMade = true
   }
+  save()
   return changeMade
 }
 
@@ -75,6 +73,7 @@ function destroy (id) {
   if (x) {
     var index = todos.indexOf(x)
     todos.splice(index, 1)
+    save()
     return true
   } else {
     return false
@@ -87,6 +86,7 @@ function destroyAll () {
       destroy(item._id)
     })
   }
+  save()
 }
 
 module.exports = {
@@ -96,6 +96,5 @@ module.exports = {
   show,
   update,
   destroy,
-  destroyAll,
-  save
+  destroyAll
 }
