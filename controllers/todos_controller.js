@@ -1,21 +1,15 @@
-const uuidGenerator = require('uuid/v4')
-const fs = require('fs')
-
-const todos = []
-// // the following line will instead load the todos from a json file when the app starts
-// const todos = require('../data.json')
-
-// // The following function can be used to save the todos array to the json data file
-// function save () {
-//   const json = JSON.stringify(todos)
-//   fs.writeFileSync('data.json', json, 'utf8')
-// }
+var mongoose = require('mongoose')
+var dbURI = 'mongodb://localhost/todo'
+const Todo = require('../models/todo')
 
 // CREATE - params should be an object with keys for name, description and completed
 function create (params) {
+  mongoose.connect(dbURI)
+  mongoose.Promise = global.Promise
   var newTodo = params
   if (!newTodo.name || newTodo.name.length < 5) {
     return false
+    mongoose.disconnect()
   }
   if (!newTodo.description || newTodo.description === '') {
     newTodo.description = 'default'
@@ -23,59 +17,91 @@ function create (params) {
   if (!newTodo.completed || newTodo.completed === '') {
     newTodo.completed = false
   }
-  newTodo._id = uuidGenerator()
-  todos.push(newTodo)
+  // todos.push(newTodo)
+  save()
+  // return newTodo
+  console.log(newTodo)
+  mongoose.disconnect()
 }
 
 // READ (list & show)
 function list () {
   // return list of all TODOs
-  return todos
-}
-function show (id) {
-  // find the TODO with this id
-  var link = null
-  todos.forEach(function (element) {
-    if (element._id === id) {
-      link = element
+  mongoose.connect(dbURI)
+  mongoose.Promise = global.Promise
+  Todo.find({}, function (err, data) {
+    if (err) {
+      console.error(err)
+      mongoose.disconnect()
+    } else {
+      console.log(data)
+      mongoose.disconnect()
     }
   })
-  return link
+}
+
+function show (id) {
+  // find the TODO with this id
+  mongoose.connect(dbURI)
+  mongoose.Promise = global.Promise
+  Todo.find().where('_id').equals(id).exec(function (err, data) {
+    if (err) {
+      console.error(err)
+      mongoose.disconnect()
+    } else {
+      console.log(data)
+      mongoose.disconnect()
+    }
+  })
 }
 
 // UPDATE - params should be an object with KVPs for the fields to update
 function update (id, params) {
-  var changes = show(id)
-  if (show(id) === null) {
-    return false
-  } else if (params.name.length < 5 || params.name === '') {
-    return false
-  } else if (params.name.length >= 5 && params.name !== '') {
-    changes.name = params.name
-    changes.description = params.description
-    changes.completed = params.completed
-    return true
+  mongoose.connect(dbURI)
+  mongoose.Promise = global.Promise
+  if (params.name.length >= 5) {
+    Todo.findByIdAndUpdate(id, {$set: params}, {new: true}, function (err, data) {
+      if (err) {
+        console.error(err)
+        mongoose.disconnect()
+        // return false
+      } else {
+        console.log(data)
+        mongoose.disconnect()
+      }
+    })
+  } else {
+    mongoose.disconnect()
   }
 }
 
 // DESTROY (destroy & destroyAll)
 function destroy (id) {
-  if (show(id) === null) {
-    return false
-  } else if (show(id) === !null) {
-    var index = todos.indexOf(show(id))
-    todos.splice(index, 1)
-    return true
-  } else {
-    return false
-  }
+  mongoose.connect(dbURI)
+  mongoose.Promise = global.Promise
+  Todo.findByIdAndRemove(id, function (err, data) {
+    if (err) {
+      console.error(err)
+      mongoose.disconnect()
+    } else {
+      console.log(data)
+      mongoose.disconnect()
+    }
+  })
 }
 
 function destroyAll () {
-  todos.forEach(function (element, index, list) {
-    todos.shift()
+  mongoose.connect(dbURI)
+  mongoose.Promise = global.Promise
+  Todo.remove({}, function (err, data) {
+    if (err) {
+      console.error(err)
+      mongoose.disconnect()
+    } else {
+      console.log(data)
+      mongoose.disconnect()
+    }
   })
-  return true
 }
 
 module.exports = {

@@ -1,5 +1,5 @@
 {
-  "name": "tdd-todo-list",
+  "name": "mongo_todo_list",
   "version": "1.0.0",
   "description": "Test Driven Development Lab using Assert",
   "main": "index.js",
@@ -7,11 +7,8 @@
     "start": "node index.js",
     "test": "node test/todo_tests.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wdi-sg/tdd-todo-list.git"
-  },
   "dependencies": {
+    "mongoose": "^4.9.3",
     "uuid": "^3.0.1"
   }
 }
