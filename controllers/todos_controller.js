@@ -1,7 +1,7 @@
 const uuidGenerator = require('uuid/v4')
 const fs = require('fs')
 
-const todos = []
+// const todos = []
 // {
 //   name:
 //   description:
@@ -9,13 +9,15 @@ const todos = []
 //   _id: uuidGenerator
 // }
 //// the following line will instead load the todos from a json file when the app starts
-// const todos = require('../data.json')
+const todos = require('../data.json')
 
 //// The following function can be used to save the todos array to the json data file
-// function save () {
-//   const json = JSON.stringify(todos)
-//   fs.writeFileSync('data.json', json, 'utf8')
-// }
+function save () {
+  const json = JSON.stringify(todos)
+  fs.writeFileSync('data.json', json, 'utf8')
+}
+
+
 
 // CREATE - params should be an object with keys for name, description and completed
 // pass an object into todos
@@ -29,8 +31,10 @@ function create(params) {
   newTodo.description = params.description || "default description"
   newTodo.completed = params.completed || false
   newTodo._id = uuidGenerator()
-  console.log(newTodo)
+  // console.log(newTodo)
   todos.push(newTodo)
+  save()
+  return newTodo
 }
 
 // READ (list & show)
@@ -45,6 +49,7 @@ function show(id) {
         return todos[key]
       }
     }
+  save()
   return null
 }
 
@@ -60,6 +65,7 @@ function update(id, updatedParams) {
       }
     }
   }
+  save()
   return false
 }
 
@@ -71,11 +77,13 @@ function destroy(id) {
       return true
     }
   }
+  save()
   return false
 }
 
 function destroyAll() {
   todos = []
+  save()
   return true
 }
 
