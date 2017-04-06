@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "node test/todo_tests.js"
+    "test": "mocha test/chai_test.js"
   },
   "repository": {
     "type": "git",
@@ -13,5 +13,17 @@
   },
   "dependencies": {
     "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "mocha-mongoose": "^1.2.0",
+    "mongoose": "^4.9.3"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "it"
+    ]
   }
 }

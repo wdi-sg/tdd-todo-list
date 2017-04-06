@@ -1,17 +1,45 @@
-const uuidGenerator = require('uuid/v4')
-const fs = require('fs')
+// sets up the db and mongoose
+var dbURI = 'mongodb://localhost/disney'
+var mongoose = require('mongoose')
+mongoose.Promise = global.Promise
+
+// sets up the testers
+var should = require('chai').should()
+var clearDB = require('mocha-mongoose')(dbURI)
+
+// sets up the models
+var Todos = require('../models/todos')
+
+
+mongo.connect(dbURI, function(err) {
+  if (err) throw err
+  console.log('connected to database!')
+})
+mongoose.Promise = global.Promise
+
+// const uuidGenerator = require('uuid/v4')
+// const fs = require('fs')
 
 // const todos = []
 // the following line will instead load the todos from a json file when the app starts
-var todos = require('../data.json')
+// const todos = require('../data.json')
+
+
 
 // The following function can be used to save the todos array to the json data file
-function save () {
-  const json = JSON.stringify(todos)
-  fs.writeFileSync('data.json', json, 'utf8')
-  console.log('...file saved')
-  return true
-}
+// function save() {
+//   const json = JSON.stringify(todos)
+//   fs.writeFileSync('data.json', json, 'utf8')
+//   console.log('...file saved')
+//   return true
+// }
+
+// Character.save( function(err) {
+//   if(err) console.error(err);
+//   console.log('New Princess is saved.')
+//
+//  mongoose.disconnect()
+})
 
 // CREATE - params should be an object with keys for name, description and completed
 function create(params) {
@@ -31,6 +59,7 @@ function create(params) {
   if (newTodo.name.length >= 5) {
     todos.push(newTodo)
   }
+  save()
 }
 
 // READ (list & show)
@@ -49,7 +78,7 @@ function show(id) {
       object = value
     }
   })
-
+  save()
   if (Object.keys(object).length === 0) return null
   else return object
 }
@@ -71,8 +100,12 @@ function update(id, params) {
   if (!updatedParams.completed) updatedParams.completed === "false"
   if (updatedParams.name.length >= 5) {
     todos[index] = updatedParams
+    save()
     return true
-  } else return false
+  } else {
+    save()
+    return false
+  }
 }
 
 // DESTROY (destroy & destroyAll)
@@ -88,17 +121,22 @@ function destroy(id) {
 
   if (index) {
     todos.splice(index,1)
+    save()
     return true
   }
-  else return false
+  else {
+    save()
+    return false
+  }
 }
 
 function destroyAll() {
+  console.log(list())
+  console.log('count: '+list().length)
   console.log('Deleting all todos!')
   todos.forEach(function(val){
-      todos.pop()
+      destroy(val._id)
   })
-  return true
 }
 
 module.exports = {
