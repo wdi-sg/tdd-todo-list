@@ -1,17 +1,26 @@
 {
   "name": "tdd-todo-list",
   "version": "1.0.0",
-  "description": "Test Driven Development Lab using Assert",
-  "main": "index.js",
+  "description": "This is Part 1 of a series of labs working towards building your first full stack web app.",
+  "main": "todomongoose.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "mongoose": "^4.9.3"
+  },
+  "devDependencies": {},
   "scripts": {
-    "start": "node index.js",
-    "test": "node test/todo_tests.js"
+    "test": "node test/todo_test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wdi-sg/tdd-todo-list.git"
+    "url": "git+https://github.com/smilesandcocktails/tdd-todo-list.git"
   },
-  "dependencies": {
-    "uuid": "^3.0.1"
-  }
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smilesandcocktails/tdd-todo-list/issues"
+  },
+  "homepage": "https://github.com/smilesandcocktails/tdd-todo-list#readme"
 }

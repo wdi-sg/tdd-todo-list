@@ -12,14 +12,14 @@ const uuidGenerator = require('uuid/v4')
 // what should create function do?
 // 1. Create a new todo and push into todos
 
-// todos.create({name:'Cara Chew', description:'GA Student', completed: false})
-//
+todos.create({name:'Cara Chew', description:'GA Student', completed: false})
+
 // console.log(todos.list()) // array of object
 // console.log(todos.list().length) // 1
 // console.log(todos.list()[0].name) // Cara Chew
-//
-//
-// assert.strictEqual(todos.list().length, 1, 'To do is not created.')
+
+
+assert.strictEqual(todos.list().length, 1, 'To do is not created.')
 
 // 2. the todo that is created should have a name, description, completed and id
 
@@ -85,15 +85,15 @@ const uuidGenerator = require('uuid/v4')
 
 // 1. Should return Todo object with the specified id
 
-todos.create({name:'Cara Chew', description:'GA Student', completed: false})
-
-todos.create({name:'Pamie', description:'Other', completed: true})
-
-console.log(todos.list())
+// todos.create({name:'Cara Chew', description:'GA Student', completed: false})
+//
+// todos.create({name:'Pamie', description:'Other', completed: true})
+//
+// console.log(todos.list())
 // console.log(todos.)
 // console.log(todos.list()) // array of object
 // console.log(todos.list()[0]._id) // Cara Chew
 
-assert.strictEqual(todos.show(1) , 1, 'Not the correct Object')
+// assert.strictEqual(todos.show(1) , 1, 'Not the correct Object')
 
 // 2. should return null if no Todo with that id exists
