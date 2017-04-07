@@ -84,18 +84,7 @@ function show (id) {
 
 // UPDATE - params should be an object with KVPs for the fields to update
 function update (id, params) {
-  var toUpdate = show(id)
 
-  if ((params.name !== undefined && params.name === '') || (params.name !== undefined && params.name.length < 5)) {
-    return false
-  } else {
-    toUpdate.name = params.name
-  }
-
-  params.name === undefined ? '' : toUpdate.name = params.name
-  params.description === undefined ? '' : toUpdate.description = params.description
-  params.completed === undefined ? '' : toUpdate.completed = params.completed
-  return true
 }
 
 // DESTROY (destroy & destroyAll)
@@ -103,9 +92,9 @@ function destroy (id) {
   var toDestroy = show(id)
 
   if (toDestroy) {
-    var index = todos.indexOf(toDestroy)
+    var index = todo.indexOf(toDestroy)
 
-    todos.splice(index, 1)
+    todo.splice(index, 1)
     return true
     console.log(todos)
   } else {
@@ -114,11 +103,7 @@ function destroy (id) {
 }
 
 function destroyall () {
-  todos.forEach(function (item, index, array) {
-    array.pop()
-  })
 
-  return true
 }
 
 module.exports = {
