@@ -65,20 +65,24 @@ function show(id) {
   }
 
 // UPDATE - params should be an object with KVPs for the fields to update
-// function update(id, updatedParams) {
-//   if(updatedParams.name != '' && updatedParams.name.length > 5){
-//     for(var key in todos) {
-//       if(todos[key].id_num === id) {
-//         todos[key].name = updatedParams.name
-//         todos[key].description = updatedParams.description
-//         todos[key].completed = updatedParams.completed
-//         return true
-//       }
-//     }
-//   }
-//   save()
-//   return false
-// }
+function update(id, updatedParams) {
+  if(updatedParams.name != '' && updatedParams.name.length > 5){
+    toDo.update({},
+        {
+          $set: {
+            "name": updatedParams.name,
+            "description": updatedParams.description,
+            "completed": updatedParams.completed
+         },
+        }, function(err, data) {
+        if (err) return console.err(err)
+        mongoose.disconnect()
+        return true
+      })
+  }
+  save()
+  return false
+}
 
 // DESTROY (destroy & destroyAll)
 function destroy(id) {
