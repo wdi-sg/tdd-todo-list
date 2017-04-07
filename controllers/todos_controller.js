@@ -1,66 +1,65 @@
-const uuidGenerator = require('uuid/v4')
-const fs = require('fs')
+var mongoose = require('mongoose')
+var dbURI = 'mongodb://localhost/todolist'
 
-console.log('this is id generator ' + uuidGenerator())
+var Todo = require('../models/todo')
 
-const todos = []
-//// the following line will instead load the todos from a json file when the app starts
-// const todos = require('../data.json')
+mongoose.connect(dbURI, function (err) {
+  if (err) console.error(err)
+  console.log('connected to database')
+})
 
-//// The following function can be used to save the todos array to the json data file
-// function save () {
-//   const json = JSON.stringify(todos)
-//   fs.writeFileSync('data.json', json, 'utf8')
-// }
+mongoose.Promise = global.Promise
 
-// CREATE - params should be an object with keys for name, description and completed
-function create (params) {
-  var newTodo = params
-  newTodo._id = uuidGenerator()
-  console.log(newTodo)
-  todos.push(newTodo)
-}
+//CREATE - create (params)
 
-//if name is undefined
+// var newTodo = new Todo()
+// newTodo.name = 'Find a Venue'
+// newTodo.description = 'Find a venue that is convenient and fits the budget'
+// newTodo.completed = true
+//
+// console.log(newTodo)
+//
+// newTodo.save(function (err) {
+//   if (err) console.error(err)
+//
+//   console.log('newTodo is saved')
+//   mongoose.disconnect()
+// })
 
-function checkName () {
-  if (testParamsName.name !== undefined) {
-    return true
-  } else if (testParamsName.name === undefined) {
-    return false
-  } else if (testParamsName.length <= 4) {
-    return false
-  }
-}
+//READ - list
+// Todo.find({}, function (err, todo) {
+//   if (err) console.error(err)
+//
+//   console.log(todo)
+//   mongoose.disconnect()
+// })
 
-// READ (list & show)
-function list () {
-  return todos
-}
+//READ - show(id)
+// Todo.find({}).where('_id').equals('58e6c909540bdd12fe3efc0c').exec(function (err, todo) {
+//   if (err) console.error(null)
+//   console.log(todo)
+//   mongoose.disconnect()
+// })
 
+//Update
+//
+// Todo.findOne({ _id: '58e6cde31e3f63132fda036c' }, function (err, todo){
+//   var newTodo = new Todo()
+//   newTodo.name = 'Buy Ingredients for Updated Cake';
+//
+//   newTodo.save(function (err) {
+//     if (err) console.error(false)
+//
+//     console.log(true)
+//     mongoose.disconnect()
+// })
+// })
 
-function show (id) {
-  //Should return the Todo Object with the specified `id`
-  //Should return null if no TODO with that `id` exists
-  if (testParams._id !== null) {
-  return 'insert code for specified id'
-} else if (testParams._id === null)
-  return null
-}
-
-// UPDATE - params should be an object with KVPs for the fields to update
-function update (id, params) {
-}
-
-// DESTROY (destroy & destroyAll)
-function destroy (id) {
-}
-
-module.exports = {
-  create,
-  checkName,
-  list,
-  show,
-  update,
-  destroy
-}
+//delete
+Todo.findByIdAndRemove('58e6c80a890b0b12f74f15bd', function (err, todo) {
+    var response = {
+        message: "Todo successfully deleted",
+        id: todo._id
+    }
+  mongoose.disconnect()
+})
