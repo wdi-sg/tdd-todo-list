@@ -22,6 +22,8 @@ var testParams4 = {
   completed: false
 }
 
+console.log(todos.list())
+
 console.log('+++ Checking if todo.create() allows new Todo without name +++\n')
 // New todo created with testParams2 (no name)
 todos.create(testParams2)
