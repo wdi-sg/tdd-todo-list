@@ -18,9 +18,10 @@ app.use(ejsLayouts)
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(methodOverride('_method'))
 
-// START THE ROUTING
 
+// START THE ROUTING
 app.use('/', todoscontroller)
+app.use('/assets', express.static('assets'))
 
 // END THE ROUTING
 

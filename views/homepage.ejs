@@ -17,10 +17,21 @@
   <button type="submit">Submit</button>
 </form>
 
+<form method="POST" action="/?_method=DELETE">
+    <button name = "id" type = "submit">Remove Entire List</button>
 
-<h2>THE FREAKIN' LIST</h2>
+<h2>TO SHOW 1 FREAKIN' LIST</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Completed</th>
+    </tr>
+  </thead>
 
-<table id="table">
+          
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -29,6 +40,8 @@
     </tr>
   </thead>
   <tbody>
+
+<h2>TO SHOW THE WHOLE FREAKIN' LIST</h2>
 
 <% obj.forEach(function (list) { %>
     <tr>
@@ -51,11 +64,11 @@
         <label for="completed"></label>
         <input type="text" name="completed" id="completed" placeholder="completed">
       </div></td>
-      <!-- <td><%-list.id%></td> -->
+      <td><%-list.id%></td>
       <td><button name = "id" value = <%-list.id%> type = "submit">Update</button></td>
     </form></td>
-      <td><form method="POST" action="/<%-list.id%>?_method=DELETE">
+    <td><form method="POST" action="/<%-list.id%>?_method=DELETE">
         <button value= <%-list.id%> name = "id" type = "submit">Remove</button></td>
-      <td></form>
+    </form>
     </tr>
   <% })%>

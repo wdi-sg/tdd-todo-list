@@ -1,0 +1,13 @@
+
+<form action = "/showOne/:id" method = "POST">
+  <div class="form-group">
+    <label for="name">Enter ID to Find</label>
+    <input type="text" name="name" id="name" placeholder="Name">
+  </div>
+  <button type="submit">Find</button>
+<tr>
+  <td><%-each.name%></td>
+  <td><%-each.description%></td>
+  <td><%-each.completed%></td>
+</tr>
+</form>

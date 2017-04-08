@@ -11,18 +11,28 @@ router.get('/', function(req,res) {
   // console.log(res)
   Todo.find({}, function (err, list) {
     if (err) throw (err)
+
     res.render('homepage', {obj:list})
   })
 })
 
-router.get('/showOne', function(req,res) {
-  // console.log(req)
-  // console.log(res)
-  Todo.findById(req.params.id, function (err, list) {
-    if (err) throw (err)
-    res.render('homepage', {obj:list})
-  })
-})
+// router.get('/showOne/:id', function(req,res) {
+//
+//   console.log({obj:list}.obj)
+//   console.log(req.params.id)
+//
+//   Todo.findById(req.params.id, function (err, list) {
+//     if (err) throw (err)
+//
+//     var objectArray = {obj:list}.obj
+//
+//     objectArray.filter (function (each) {
+//     return each.id === req.params.id
+//
+//     res.render('homepage', {obj:list})
+//
+//   })
+// })
 
 router.post('/', function (req, res) {
   var reqBody = req.body
@@ -69,7 +79,7 @@ router.post('/update/:id', function (req, res, next) {
     if (reqBody.completed === '') {
       reqBody.completed = false
     }
-    
+
     Todo.update({ _id: req.params.id }, { $set:  {
       name: reqBody.name,
       description: reqBody.description,
@@ -83,6 +93,18 @@ router.post('/update/:id', function (req, res, next) {
   console.log('Update not successful')
   }
 })
+
+router.delete('/', function (req, res) {
+
+  Todo.remove(function(err) {
+    if (err) console.error ('Sorry this list does not exist.')
+
+   console.log('All Todos have been deleted from the list.')
+
+    res.redirect('/')
+  })
+})
+
 
 // END THE ROUTING
 
