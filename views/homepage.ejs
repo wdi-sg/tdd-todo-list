@@ -1,6 +1,6 @@
-<h1>MY TO DO LIST</h1>
+<h1>THE THINGS I GOTTA DO</h1>
 
-<%# <form method="POST" action="/update>">%>
+<h2>TO CREATE THE FREAKIN' LIST</h2>
 <form action = "/" method = "POST">
   <div class="form-group">
     <label for="name">Name</label>
@@ -17,18 +17,45 @@
   <button type="submit">Submit</button>
 </form>
 
-<% obj.forEach(function (list) { %>
-    <ul>
-      <li>Name: <%-list.name%></li>
-      <li>Description: <%-list.description%></li>
-      <li>Completed <%-list.completed%></li>
-      <li>Id <%-list.id%></li>
-      <form method="POST" action="/update/<%-list.id%>">
-          <button value= <%-list.id%> name = "id" type = "submit">Update</button>
-      </form>
 
-      <form method="POST" action="/<%-list.id%>?_method=DELETE">
-          <button value= <%-list.id%> name = "id" type = "submit">Remove</button>
-      </form>
-    </ul>
+<h2>THE FREAKIN' LIST</h2>
+
+<table id="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Completed</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<% obj.forEach(function (list) { %>
+    <tr>
+      <td><%-list.name%>
+      <!-- </td> -->
+      <form action = "/update/<%-list.id%>" method = "POST">
+        <div class="form-group">
+          <label for="name"></label>
+          <input type="text" name="name" id="name" placeholder="Name">
+        </div></td>
+      <td><%-list.description%>
+      <!-- </td> -->
+      <div class="form-group">
+        <label for="description"></label>
+        <input type="text" name="description" id="description" placeholder="description">
+      </div></td>
+      <td><%-list.completed%>
+      <!-- </td> -->
+      <div class="form-group">
+        <label for="completed"></label>
+        <input type="text" name="completed" id="completed" placeholder="completed">
+      </div></td>
+      <!-- <td><%-list.id%></td> -->
+      <td><button name = "id" value = <%-list.id%> type = "submit">Update</button></td>
+    </form></td>
+      <td><form method="POST" action="/<%-list.id%>?_method=DELETE">
+        <button value= <%-list.id%> name = "id" type = "submit">Remove</button></td>
+      <td></form>
+    </tr>
   <% })%>

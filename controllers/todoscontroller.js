@@ -2,9 +2,7 @@ var express = require('express')
 
 var router = express.Router()
 
-
 var Todo = require('../models/todoschema')
-
 
 // START THE ROUTING
 
@@ -12,6 +10,15 @@ router.get('/', function(req,res) {
   // console.log(req)
   // console.log(res)
   Todo.find({}, function (err, list) {
+    if (err) throw (err)
+    res.render('homepage', {obj:list})
+  })
+})
+
+router.get('/showOne', function(req,res) {
+  // console.log(req)
+  // console.log(res)
+  Todo.findById(req.params.id, function (err, list) {
     if (err) throw (err)
     res.render('homepage', {obj:list})
   })
@@ -34,7 +41,7 @@ router.post('/', function (req, res) {
     }
 
     Todo.create({name: reqBody.name, description: reqBody.description, completed: reqBody.completed, id: reqBody.id}, function (err, doc) {
-      if(err) throw (err)
+      if (err) throw (err)
       console.log('Entry is updated')
 
       res.redirect('/')
@@ -51,11 +58,18 @@ router.delete('/:id', function (req, res) {
   })
 })
 
-router.post('/update', function (req, res, next) {
+router.post('/update/:id', function (req, res, next) {
 
   var reqBody = req.body
-  // if(reqBody.name.length > 5 && reqBody.name.length != '') {
+  if(reqBody.name.length > 5 && reqBody.name.length != '') {
+    if (reqBody.description === '') {
+      reqBody.description = 'Nil'
+    }
 
+    if (reqBody.completed === '') {
+      reqBody.completed = false
+    }
+    
     Todo.update({ _id: req.params.id }, { $set:  {
       name: reqBody.name,
       description: reqBody.description,
@@ -64,13 +78,10 @@ router.post('/update', function (req, res, next) {
       console.log('Entry updated')
       res.redirect('/')
     })
-
-
-  // }
-  // else {
-  // console.log('Update not successful')
-  // }
-
+  }
+  else {
+  console.log('Update not successful')
+  }
 })
 
 // END THE ROUTING
