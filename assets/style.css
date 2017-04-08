@@ -1,3 +1,10 @@
 body {
-  background-color: pink
+  background-color: orange;
+  font-family: 'Raleway', sans-serif;
+
+}
+
+.pageTitle {
+  text-decoration: none;
+  color: black
 }
