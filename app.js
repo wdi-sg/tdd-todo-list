@@ -39,8 +39,17 @@ app.get('/',function(req,res){
 
 // getting a todo by id
 app.get('/:id',function(req,res){
-  console.log('connected to ' +req.params.id)
+  console.log('redirecting to ' +req.params.id)
   Todos.find({ _id: req.params.id},function(err,todos){
+    if (err) throw console.error(err);
+    // console.log(todos)
+    res.render('todo', {allTodos: todos})
+  })
+})
+
+app.get('/id',function(req,res){
+  console.log('redirecting to ' +req.body.id)
+  Todos.find({ _id: req.body.id},function(err,todos){
     if (err) throw console.error(err);
     // console.log(todos)
     res.render('todo', {allTodos: todos})
@@ -69,10 +78,9 @@ app.post('/delete',function(req,res){
 })
 
 // adding a new todo
-app.post('/',function(req,res){
+app.post('/create',function(req,res){
   //read the output
   console.log(req.body)
-  res.send(req.body)
   var todo = new Todos({
     name: req.body.name,
     description: req.body.description,
