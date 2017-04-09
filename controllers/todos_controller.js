@@ -1,23 +1,16 @@
-const uuidGenerator = require('uuid/v4')
-const fs = require('fs')
-
-// const todos = []
-// {
-//   name:
-//   description:
-//   completed:
-//   _id: uuidGenerator
-// }
-//// the following line will instead load the todos from a json file when the app starts
-const todos = require('../data.json')
+// connect to db
+var mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/todo-list')
+//
+//
+// // require the models
+var toDo = require('./models/mongoose_todo')
+mongoose.Promise = global.Promise
 
 //// The following function can be used to save the todos array to the json data file
-function save () {
+// function save () {
   const json = JSON.stringify(todos)
   fs.writeFileSync('data.json', json, 'utf8')
-}
-
-
 
 // CREATE - params should be an object with keys for name, description and completed
 // pass an object into todos

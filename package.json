@@ -2,7 +2,7 @@
   "name": "tdd-todo-list",
   "version": "1.0.0",
   "description": "Test Driven Development Lab using Assert",
-  "main": "index.js",
+  "main": "todos_controller.js",
   "scripts": {
     "start": "node index.js",
     "test": "node test/todo_tests.js"
@@ -12,6 +12,24 @@
     "url": "git+https://github.com/wdi-sg/tdd-todo-list.git"
   },
   "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-ejs-layouts": "^2.3.0",
+    "mongoose": "^4.9.3",
+    "nodemon": "^1.11.0",
     "uuid": "^3.0.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/wdi-sg/tdd-todo-list/issues"
+  },
+  "homepage": "https://github.com/wdi-sg/tdd-todo-list#readme",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
