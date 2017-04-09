@@ -8,7 +8,12 @@
         <th>Completed</th>
         <th>id</th>
         <th>Manage</th>
-        <th>Delete</th>
+        <th>
+          <form action="/deleteAll" method="post">
+          <button type="submit" class="btn btn-default">Delete All</button>
+          </form>
+        </th>
+
     </tr>
     <% allTodos.forEach(function(todo,index){ %>
         <tr>
@@ -29,7 +34,6 @@
             </td>
             <td>
               <form action="/<%- allTodos[0]._id%>" method="post">
-                <input type="hidden" name="id" value="<%-allTodos[0]._id%>" class="form-control" id="id">
                 <button type="submit" class="btn btn-default">Manage</button>
               </form>
             </td>
