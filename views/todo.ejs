@@ -1,0 +1,63 @@
+<h1>To Do List</h1>
+
+<table class="table table-striped">
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Completed</th>
+        <th>id</th>
+    </tr>
+    <% allTodos.forEach(function(todo,index){ %>
+        <tr>
+            <td>
+                <%- index+1 %>
+            </td>
+            <td>
+                <%- todo.name %>
+            </td>
+            <td>
+                <%- todo.description %>
+            </td>
+            <td>
+                <%- todo.completed %>
+            </td>
+            <td>
+                <%- todo.id %>
+            </td>
+        </tr>
+        <% }) %>
+</table>
+
+<div class="form-container">
+    <h2>Update</h2>
+    <form action="/update" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" class="form-control" id="name" placeholder="Your new task name">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" name="description" class="form-control" id="description" placeholder="Your new description">
+        </div>
+
+        <div class="form-group">
+          <label for="completed">Completed?</label><br>
+            <input type="radio" name="completed" id="is_true" value="true"/>
+            <label>True</label>
+            <input type="radio" name="completed" value="false" id="is_false" checked/>
+            <label>False</label>
+        </div>
+        <div class="form-group">
+            <input type="hidden" name="id" value="<%-allTodos[0]._id%>" class="form-control" id="id">
+        </div>
+        <button type="submit" class="btn btn-default">Update To Do</button>
+    </form>
+</div>%>
+
+<div class="form-container">
+    <h2>Delete <%- allTodos[0].name %></h2>
+    <form action="/delete" method="post">
+        <button type="submit" class="btn btn-default">Delete</button>
+    </form>
+</div>%>
