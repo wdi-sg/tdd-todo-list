@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 
 var todosSchema = new mongoose.Schema({
   name: String,
-  description: Number,
+  description: String,
   completed: Boolean,
 })
 

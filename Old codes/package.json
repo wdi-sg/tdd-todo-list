@@ -2,7 +2,7 @@
   "name": "tdd-todo-list",
   "version": "1.0.0",
   "description": "Test Driven Development Lab using Assert",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "node index.js",
     "test": "mocha test/chai_test.js"
@@ -12,6 +12,12 @@
     "url": "git+https://github.com/wdi-sg/tdd-todo-list.git"
   },
   "dependencies": {
+    "body-parser": "^1.17.1",
+    "ejs": "^2.5.6",
+    "ejs-layouts": "0.0.1",
+    "express": "^4.15.2",
+    "express-ejs-layouts": "^2.3.0",
+    "mongoose": "^4.9.3",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
