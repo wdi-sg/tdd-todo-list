@@ -3,12 +3,12 @@
 This is Part 1 of a series of labs working towards building your first full stack web app.
 
 - Part 1 - (this repo)
-- [Part 2 - Mongo todo list](https://github.com/wdi-sg/mongo-todo-list)
-- [Part 3 - Express todo list pt1](https://github.com/wdi-sg/express-todo-list-pt1)
-- [Part 3.1 - Mocha, Chai and Supertest todo list](https://github.com/wdi-sg/mocha-todo-list) (Optional)
-- [Part 4 - Express todo list pt2](https://github.com/wdi-sg/express-todo-list-pt2)
-- [Part 5 - Multi Model todo list](https://github.com/wdi-sg/multi-model-todo-list)
-- [Part 6 - Users todo list](https://github.com/wdi-sg/users-todo-list)
+- Part 2 - Mongo todo list
+- Part 3 - Express todo list pt1
+- Part 3.1 - Mocha, Chai and Supertest todo list
+- Part 4 - Express todo list pt2
+- Part 5 - Multi Model todo list
+- Part 6 - Users todo list
 
 This Lab will be your first chance to apply the concepts of Test Driven Development and also introduce you to CRUD by building out the logic for a simple Todo List Application.
 
