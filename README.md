@@ -76,7 +76,7 @@ You should as a minimum implement the following features. Each will likely requi
 
 Currently the TODOs will disappear whenever the application is restarted. We can however, save the the TODOs array to a JSON file and load it again whenever the application starts. Find out how to do this and do it.
 
-_**hint:** [check the Node.js documentation for 'fs'](https://nodejs.org/api/fs.html)_
+_**hint:** check the Node.js documentation for 'fs'_
 
 ---
 
