@@ -18,8 +18,8 @@ CRUD is an acronym that stands for Create, Read, Update, Destroy. These are the 
 ## Getting Started
 
 * Fork and clone this repository
-* Run `npm install` to install dependencies
-* `npm test` - run test suite
+* Run `yarn install` to install dependencies
+* `yarn test` - run test suite
 
 ## Requirements
 
