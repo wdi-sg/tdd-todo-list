@@ -41,7 +41,7 @@ var params7 = {
 
 // normal case: creating new todos
 var firstTodo = todos.create(params)
-assert.strictEqual(todos.list().length, 1, 'List should have one after create')
+assert.strictEqual(todos.list().length, todos.list().length-1, 'List should have one more after first create after app is opened')
 success('List should have one element in the array after first create')
 // normal case: params contains 3 props
 assert.strictEqual(firstTodo.hasOwnProperty('name'), true)
@@ -100,3 +100,7 @@ assert.strictEqual(updatedTodo, false, 'Update was not successful')
 success('update with non-existent id returns false')
 
 // TESTS FOR DESTROY FUNCTION
+
+// TESTS FOR SAVE FUNCTION
+assert.strictEqual(todos.save(), true, 'Save should return true')
+success('save returns true')
