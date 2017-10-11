@@ -7,6 +7,7 @@
     "start": "node controllers/todos_controller.js",
     "test": "node test/todo_tests.js"
   },
+  "license": "UNLICENSED",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wdi-sg/tdd-todo-list.git"
