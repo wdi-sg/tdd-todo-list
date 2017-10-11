@@ -12,29 +12,60 @@ const todos = []
 // }
 
 // CREATE - params should be an object with keys for name, description and completed
-function create (params) {
+function create(params) {
+    var newTodo = {}
+    //NAME FIELD
+    if (params.name == undefined || params.name.length < 5) {
+        console.log("You need to input a proper name!");
+        return false
+    } else {
+        newTodo.name = params.name
+    }
+
+    //DESC FIELD
+    if (params.description === undefined) {
+        newTodo.description = "desc unspecified"
+    } else {
+        newTodo.description = params.description
+    }
+
+    //COMPLETED FIELD
+    if (params.completed === undefined)
+        newTodo.completed = false
+    else {
+        newTodo.completed = params.completed
+    }
+
+    newTodo._id = uuidGenerator()
+    todos.push(newTodo)
+    console.log(newTodo._id + "was created")
+    return true
 }
 
 // READ (list & show)
-function list () {
-  // return list of all TODOs
+function list() {
+    // return list of all TODOs
+    return todos
 }
-function show (id) {
-  // find the TODO with this id
+
+function show(id) {
+    // find the TODO with this id
+    // if (id === todo.list()) {
+    //
+    // }
+    // return null
 }
 
 // UPDATE - params should be an object with KVPs for the fields to update
-function update (id, params) {
-}
+function update(id, params) {}
 
 // DESTROY (destroy & destroyAll)
-function destroy (id) {
-}
+function destroy(id) {}
 
 module.exports = {
-  create,
-  list,
-  show,
-  update,
-  destroy
+    create,
+    list,
+    show,
+    update,
+    destroy
 }
