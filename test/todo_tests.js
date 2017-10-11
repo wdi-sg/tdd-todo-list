@@ -176,4 +176,5 @@ assert.strictEqual(
   0,
   "destoryAll does not remove all items"
 )
+
 success()
