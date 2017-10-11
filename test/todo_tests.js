@@ -64,3 +64,14 @@ var shortName = {
 todos.create(shortName)
 console.log(shortName)
 assert.strictEqual(todos.create(shortName), false, 'name too short')
+
+
+console.log('Testing show(id)')
+
+todos.show(params3._id)
+assert.strictEqual(todos.show(params3._id), params3, "error: show(id) did not return an obj" )
+success()
+
+//console.log("error: id is invalid - missing chars or wrong number of char etc")
+// console.log("error: id is invalid - does not refer to object")
+// console.log("error: id is invalid - wrong id characters")
