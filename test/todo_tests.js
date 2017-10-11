@@ -152,16 +152,28 @@ todos.destroy(idCheck)
 assert.strictEqual(todoListNow[2], undefined, "destroy is not working")
 success()
 
-// console.log("test if destroy return true or false")
-// let idCheck3 = todoListNow[1]._id
-// assert.strictEqual(
-//   todos.destroy(idCheck3),
-//   true,
-//   "destroy is not returning true"
-// )
-//
-// assert.strictEqual(
-//   todos.destroy("adasdasnj"),
-//   false,
-//   "destroy is not returning false"
-// )
+console.log("test if destroy returns true")
+let idCheck3 = todoListNow[1]._id
+assert.strictEqual(
+  todos.destroy(idCheck3),
+  true,
+  "destroy is not returning true"
+)
+success()
+
+console.log("test if destroy returns false")
+assert.strictEqual(
+  todos.destroy("random string. new phone, who this?"),
+  false,
+  "destroy is not returning false"
+)
+success()
+
+console.log("test destroy all")
+assert.strictEqual(todos.destroyAll(), true, "destroyAll not returning true")
+assert.strictEqual(
+  todoListNow.length,
+  0,
+  "destoryAll does not remove all items"
+)
+success()

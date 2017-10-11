@@ -51,8 +51,19 @@ function update(id, params) {
 // DESTROY (destroy & destroyAll)
 function destroy(id) {
   for (let i = 0; i < todos.length; i++) {
-    if (todos[i]._id === id) todos.splice(i, 1)
+    if (todos[i]._id === id) {
+      todos.splice(i, 1)
+      return true
+    }
   }
+  return false
+}
+
+function destroyAll() {
+  for (let i = 0; i < todos.length; i++) {
+    todos.splice(i, 1)
+  }
+  return true
 }
 
 module.exports = {
@@ -60,5 +71,6 @@ module.exports = {
   list,
   show,
   update,
-  destroy
+  destroy,
+  destroyAll
 }
