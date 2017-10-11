@@ -13,11 +13,22 @@ const todos = []
 
 // CREATE - params should be an object with keys for name, description and completed
 function create (params) {
+  // console.log('params given: ', params)
+  if (!params.name) return false
+  if (params.name.length <= 4) return false
+  if (!params.description) params.description = 'N/A'
+  if (!params.completed) params.completed = false
+  params._id = uuidGenerator()
+  // // set params key => _id = 123
+  // params._id = 123
+  // console.log('params now; ', params)
+  todos.push(params)
 }
 
 // READ (list & show)
 function list () {
   // return list of all TODOs
+  return todos
 }
 function show (id) {
   // find the TODO with this id
