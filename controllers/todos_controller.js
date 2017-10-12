@@ -28,15 +28,26 @@ function list () {
   // return list of all TODOs
 }
 function show (id) {
-  if (id )
-  for (i = 0; i < todos.length; i++) {
+  for (var i = 0; i < todos.length; i++) {
     if (todos[i]._id === id) return todos[i]
   }
-  else return null
+  // else return null
 }
 
 // UPDATE - params should be an object with KVPs for the fields to update
 function update (id, params) {
+  if (params.name.length < 5) return false
+
+  for (var i = 0; i < todos.length; i++) {
+    if (todos[i]._id === id) {
+      for (var key in params) {
+        todos[i][key] = params[key]
+        todos[i]._id = id
+      }
+      // console.log(todos[i]) // => success
+      return true
+    }
+  }
 }
 
 // DESTROY (destroy & destroyAll)
