@@ -4,7 +4,7 @@
   "description": "Test Driven Development Lab using Assert",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node controllers/todos_controller.js",
     "test": "node test/todo_tests.js"
   },
   "repository": {
