@@ -1,6 +1,7 @@
 const assert = require('assert')
 const todos = require('../controllers/todos_controller.js')
 const success = require('./helpers/success')
+
 // // Use Assert to Test the functionality of all your CRUD methods e.g.
 console.log('testing list method')
 assert.strictEqual(todos.list().length, 0, 'List should return an array of all todos')
@@ -14,35 +15,66 @@ var params = {
   description: 'from cold storage',
   completed: false
 }
+
 var params2 = {
   name: 'get a milk',
   description: 'from cold storage',
   completed: false
 }
 
-var createdItem = todoListNow[0]
-var keys = Object.keys(createdItem)
+var paramsJustName = {
+  name: 'buy a flower'
+}
 
-console.log(keys)
+var paramsShortName = {
+  name: 'test'
+}
 
-todos.create(params)
+var paramsNoName = {}
+
 var todoListNow = todos.list()
-assert.strictEqual(todoListNow.length, 1, 'should add the todos arr')
+todos.create(params)
+assert.strictEqual(todoListNow.length, 1, 'Should add the todos arr')
 
-console.log('check if the todo items created have property _id')
-// console.log(createdItem.hasOwnProperty())
-assert.strictEqual(createdItem.hasOwnProperty('_id'), true, '_id is not found')
+var firstItem = todoListNow[0]
+var keys = Object.keys(firstItem)
 
-console.log('check if a new todo item have different _id')
+keys.forEach(key => {
+  console.log(`check if the todo items created have property ${key}`)
+  assert.strictEqual(firstItem.hasOwnProperty(key), true, `key: ${key} is not found`)
+})
+
+console.log('check if a new todo items have different _id')
 todos.create(params2)
 var secondItem = todoListNow[1]
-assert.strictEqual(createdItem._id === secondItem._id, false, 'each _id should be unique')
-console.log('check if the todo items created have property name')
-// console.log(createdItem)
-assert.strictEqual(createdItem.name !== undefined, true, 'created item does not have a name')
-console.log('check if the todo item created does not have property description')
-assert.strictEqual(createdItem.description !== undefined, true, 'created item does not have property description')
-console.log('check if the to do items have property completed')
-assert.strictEqual(createdItem.hasOwnProperty('completed'), true, 'createdItem does not have completed property')
-assert.strictEqual((createdItem.name.length <= 4), true, 'createdItem name cannot be more than 5')
+assert.strictEqual(firstItem._id === secondItem._id, false, 'each _id should be unique')
+
+console.log('check if a new todo with only name property can be created, with default description and completed')
+todos.create(paramsJustName)
+var noNameItem = todoListNow[2]
+assert.strictEqual(noNameItem.description, 'N/A', 'default description value is not set')
+
+assert.strictEqual(noNameItem.completed, false, 'default completed value is not set')
+
+console.log('Invalid name property check')
+console.log('blank name')
+assert.strictEqual(todos.create(paramsNoName), false, 'Name cannot be blank')
+
+console.log('short name')
+assert.strictEqual(todos.create(paramsShortName), false, 'Name is too long')
+success()
+console.log('show function')
+// console.log(createdItem._id)
+assert.strictEqual(todos.show(secondItem._id), secondItem, 'test for createdItem object')
+// console.log(todos.show(secondItem._id))
+assert.strictEqual(todos.show('1234-1234-1234'), null, 'id does not exist')
+success()
+// Test update function
+console.log('update function')
+
+firstItem.name = 'get coffee'
+var testFirstItem = firstItem.name
+var firstId = firstItem._id
+console.log(firstItem)
+assert.strictEqual(todos.update(firstId, testFirstItem = 'get coffee'), testFirstItem, 'first item name not updated')
 success()

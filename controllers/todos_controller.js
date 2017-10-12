@@ -1,5 +1,5 @@
 const uuidGenerator = require('uuid/v4')
-const fs = require('fs')
+// cigt onst fs = require('fs')
 
 const todos = []
 // // the following line will instead load the todos from a json file when the app starts
@@ -32,10 +32,23 @@ function list () {
 }
 function show (id) {
   // find the TODO with this id
+  // console.log(id)
+  for (var i = 0; i < todos.length; i++) {
+    if (todos[i]._id === id) {
+      return todos[i]
+    }
+  } // console.log('null')
+  return null
 }
 
 // UPDATE - params should be an object with KVPs for the fields to update
 function update (id, params) {
+  console.log(id)
+  for (var i = 0; i < todos.length; i++) {
+    if (id === todos[i]._id) {
+      todos[i].name = params.name
+    }
+  }
 }
 
 // DESTROY (destroy & destroyAll)
