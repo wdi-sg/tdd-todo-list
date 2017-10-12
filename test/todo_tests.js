@@ -86,3 +86,6 @@ var updatedParams = {
 console.log(todos.update(params3._id, updatedParams))
 
 assert.strictEqual(todos.update(params3._id, updatedParams), true, 'Error: update not successful')
+success()
+
+console.log('Testing destroy()')
