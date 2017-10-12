@@ -35,9 +35,9 @@ You should as a minimum implement the following features. Each will likely requi
 
 #### Create(params)
 * Should be able to create a new Todo with the following KVPs (Key-Value Pairs) in the `params` object:
-  * `name`
-  * `description`
-  * `completed` (true/false)
+  * `name` - get a milk
+  * `description` = from colds storage
+  * `completed` (true/false) = false
 * Should automatically create an `_id` property for each new TODO and assign it a UUID
 * Should be able to create a new Todo with just `name`, sensible defaults will be used for other fields.
 * Should NOT be able to create a new Todo without a `name` being provided
