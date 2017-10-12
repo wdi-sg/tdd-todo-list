@@ -13,18 +13,39 @@ const todos = []
 
 // CREATE - params should be an object with keys for name, description and completed
 function create (params) {
+
+  if (!params.name) return false
+  if (params.name.length <= 4) return false
+  if (!params.description) params.description = 'None'
+  if (!params.completed) params.completed = false
+  params._id = uuidGenerator()
+  todos.push(params)
 }
 
 // READ (list & show)
 function list () {
-  // return list of all TODOs
+  return todos
 }
 function show (id) {
+  for (var i = 0; i < todos.length; i++) {
+    if (todos[i]._id === id) {
+      return todos[i]
+    }
+  }
+  return null
   // find the TODO with this id
 }
 
 // UPDATE - params should be an object with KVPs for the fields to update
 function update (id, params) {
+  for (var j = 0; j < todos.length; j++) {
+    if (todos[j]._id === id) {
+      todos[j].name = params.name
+      todos[j].description = params.description
+      todos[j].completed = params.completed
+      return true
+    }
+  }
 }
 
 // DESTROY (destroy & destroyAll)
