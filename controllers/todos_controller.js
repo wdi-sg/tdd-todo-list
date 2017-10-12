@@ -10,22 +10,56 @@ const todos = []
 //   const json = JSON.stringify(todos)
 //   fs.writeFileSync('data.json', json, 'utf8')
 // }
+function objectHas3Key (params) {
+  // console.log((Object.keys(params)));
+  var arrays = (Object.keys(params))
+  if (arrays.length === 3) return true
+  else return false
+}
 
-// CREATE - params should be an object with keys for name, description and completed
 function create (params) {
+  if (params.name.length !== 0) {
+    if (params.name.length > 5) {
+      if (objectHas3Key(params) === true) {
+        params._id = uuidGenerator()
+        // show(params._id)
+        todos.push(params)
+        show(params._id)
+        return true
+      } else { return false }
+    } else { return false }
+  } else { return false }
 }
 
 // READ (list & show)
 function list () {
-  // return list of all TODOs
+  return todos
 }
+
 function show (id) {
-  // find the TODO with this id
+  for (var i = 0; i < todos.length; i++) {
+    if (todos[i]._id === id) return todos[i]
+    else return null
+  }
 }
 
 // UPDATE - params should be an object with KVPs for the fields to update
 function update (id, params) {
+  if (params.name.length !== 0) {
+    if (params.name.length > 5) {
+      if (objectHas3Key(params) === true) {
+        for (var i = 0; i < todos.length; i++) {
+          if (todos[i]._id === id) {
+            todos.splice(i, 1)
+            todos.splice(i, 0, params)
+            return true
+          } else { return false }
+        }
+      } else { return false }
+    } else { return false }
+  } else { return false }
 }
+// search ID and remove params. Splice it out and replace with new updates
 
 // DESTROY (destroy & destroyAll)
 function destroy (id) {
